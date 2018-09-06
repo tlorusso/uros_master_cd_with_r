@@ -1,0 +1,497 @@
+---
+title:  "<br> UROS 2018"
+subtitle: "Mastering Corporate Design with R"
+author: "Thomas Lo Russo"
+output:
+  xaringan::moon_reader:
+    css: libs/testzh.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      self_contained: false
+      
+---
+
+class: inverse, center, middle
+
+# The state of corporate design @ STAT ZH
+
+???
+
+This presentation is about 'mastering CD'. However by mastering CD we do not mean perfectly layout and format everything and investing a lot of resources to do so. It is about achieving visual consistence of different forms of publications by letting R do the job for you. We will present the functions & templates we have programmed in R that users will not use for the sake of complying with CD at any cost but for CONVENIENCE.
+
+---
+class: middle, left
+
+#The state of CD @ <font color=#009ee0>STAT ZH</font>
+
+- Generic CD Guidelines for cantonal public administration cover the basics (e.g. fonts)
+- No centralized publishing, several self-publishers
+ - Infographics (Website & Twitter), Excel-Tables, statistik.info
+ 
+- professionaly layouted publications are the exception
+
+- How do we achieve <b>visual uniformity</b> of our products?
+
+--
+
+- <b>'Do it yourself' Corporate Design Toolbox</b>
+
+
+???
+
+The generic CD Guidelines provide a plenty of freedoms when it comes to design  - especially to units that publish data-products. We at the statistical Office have no centralized publishing. We are a group of self-publishers that produce infographics, Excel-tables and pdf-publications. So given this situation, how do we achieve a high degree of visual unifomirty? We are building a Corporate Desing Toolbox for this purpouse.
+
+
+---
+class: middle, left
+
+# Corporate-Design Toolbox
+
+- Colors for R-graphics <font color=#009ee0>zhpal</font>
+
+- Write data in formated Excel-Tables <font color=#009ee0>statXLSX</font>
+
+- Theme for ggplot2 graphics <font color=#009ee0>theme_stat</font>
+
+- Reports & pdf documents <font color=#009ee0>statRmd</font>
+
+---
+class: inverse, center, middle
+
+# ZH Colour Palette
+---
+class: center, middle
+
+Not the ideal <font color=#009ee0>color-palette</font> for graphs.
+```{r tidy=FALSE,echo=FALSE}
+library(scales)
+library(ggplot2)
+library(statR)
+
+ggplot(diamonds, aes(clarity, fill=clarity))+ 
+  geom_bar(position = "stack", width = 1)+
+  scale_fill_manual(values=zhpal$zhcd)
+
+```
+
+
+???
+The official cantonal CD-colors were made for other purpouses than data-visualization - mainly for the use in print publications produced with office products. Which explains why the palette is like it is.
+
+---
+### How we created our own color-scheme
+
+- **Color palette creation** with R
+ - Mute the cd colors (color interpolation)
+ - Adapt the color space (LAB instead of RGB)
+ - Creation of a color-matrix (varying hue AND saturation)
+ - Testing for Colorblind-friendliness
+ 
+<font color=#009ee0>Resources:</font>
+ 
+**Interpolation** → grDevices::colorRampPalette()
+
+**Colorblind-Testing** → Dichromat-package
+
+???
+
+Everyone was using his own palettes (mainly color brewer) - no consistence! So we decided to develop our own color scheme. Here you can see the steps of the color-sheme developemnt. We took the cd-colors, reorderer and muted them. Of course, we've adapted the colorspace to LAB instead of RGB. LAB is a color space that is optimized for the human eye better percevieng the different hues. Then i wrote a function on top of the colorRampPalette-Function that you can feed with a palette and it produces differently saturated (lighter and darker) versions of it, in equal steps. The result is a color matrix which you can see on the next slide. 
+
+---
+class: center,middle
+
+```{r tidy=FALSE,echo=FALSE}
+library(statR)
+library(scales)
+
+show_col(c(zhpal$zhdarker,zhpal$zhdark,zhpal$zh,zhpal$zhlight,zhpal$zhpastel,zhpal$zhextralight,zhpal$zhultralight), borders=FALSE)
+```
+
+
+---
+class: center,middle
+
+
+.pull-left[
+```{r tidy=FALSE,echo=TRUE}
+p = ggplot(diamonds, aes(clarity, fill=cut)) + 
+  geom_bar(position = "stack", width= 0.5)
+
+p +theme_stat() +
+  scale_fill_manual(values=zhpal$zhdiagonal)
+```
+]
+
+.pull-right[
+```{r tidy=FALSE,echo=TRUE}
+library(dichromat)
+
+p +theme_stat() +
+  scale_fill_manual(values=dichromat(zhpal$zhdiagonal,type=c("tritan")))
+```
+]
+
+???
+If you should ever create your own palette you will have it tested for colorblindness.
+The dichromat package is a great resource. You can see an example here.
+---
+background-image: url(libs/darthvader.jpg)
+background-position: 50% 50%
+class: center, bottom, inverse
+
+???
+So let me draw a short conclusion. There is no strict obligation to use these colours-palettes for everything. However, i believe in the persuasion of the force of convenience will get more and more people to use our color scheme and finally make all our charts look alike.
+
+---
+class: inverse, center, middle
+
+# Producing already formated XLSX-tables with R
+
+
+???
+
+I would never have imagined to give a presentation related to EXCEL at an R-meetup. But here i am. I will try to make it short. We're in this toghether and will survive it for sure. Just think about the Apero.
+
+---
+background-image: url(libs/turtles.gif)
+background-position: 50% 10%
+background-size: 80%
+class: center, bottom, inverse
+
+## Our users love Excel-tables
+100+ Excel-tables on our website<br>
+Data is delivered in Excel-tables to users on a daily-basis<br>
+No strict guidelines on how XLSX files should look like
+
+.footnote[[<font color=#FFFFFF>Gif: Hoguemr, reddit<font>](https://www.reddit.com/r/funny/comments/1gzksk/work_was_a_little_slow_for_me_this_morning_again/)]
+
+???
+
+The majority of our customers relies on Excel as a tool for data analysis. Thats why we have 100+ excel Tables on our website. We perform customer specific queries on a daily basis and deliver the data in Excel-tables. However there is a problem with this - for a long time, there haven't been any strict guidelines on how our XLSX Files should look like.
+
+Even if you can do crazy stuff in Excel - i mean look at thisgif that i found on reddit. In our opinion, Exceltables should be seen as a mere Endproduct. We prefer not doing anykind of datamanipulation or extensive formatting in Excel. TO ensure reproducibility.  Thats why i set up r-functions that allow for generating the final output without ever leaving R. 
+
+Be warned the next slide -> headache. How diverse our excels looked like (and to some degree still do)
+
+---
+background-image: url(libs/excel.gif)
+background-size: contain
+class: center, bottom
+
+???
+
+you can see the prob there
+---
+
+#statXLSX
+
+Creating formated excel-tables straight-out-of-R saves time and reduces the risk of errors. We recurred to the [***openxlsx-package***](https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf) package to define functions that write R-datasets in formated STAT ZH-Excel-tables.
+
+***single worksheet***
+statR::quickXLSX(data,"name of the table")
+
+***multiple worksheets***
+statR::statXLSX(data,"name of the table", worksheets)
+
+***Advantages***
+
++End-to-end reproducibility
+
++quality assurance, less error prone
+
++visual coherence
+
+???
+The amount of time i spend with formatting excel-tables at work is directly correlated with job-dissatisfaction. i love my job. And to assure that this stays as it is i wrote these functions. There are several packages that allow to create xlsx files. I choose to build the functions on top of the openxlsx package. openxlsx does not dependend on Java, which has caused me trouble when using other excel-packages. 
+
+We are planing to automatize the Excel-production and the functions will come into play in this process. 
+
+---
+background-image: url("libs/5.png")
+background-size: contain
+class: center, bottom
+
+---
+background-image: url("libs/6.png")
+background-size: contain
+class: center, bottom
+
+
+---
+class: inverse, center, bottom
+
+# theme_stat()
+
+## <br>a theme for ggplot2 graphics
+
+<br>
+.right[
+<IMG SRC="http://hexb.in/hexagons/ggplot2.png" width = "150" height = auto>]
+
+
+---
+class:top, left
+
+# Graphics with <font color=#009ee0>theme_stat()</font>
+
+```{r, eval = T, echo = F, include = F}
+library(ggplot2)
+library(statRmd)
+library(dplyr)
+library(formatR)
+library(gridExtra)
+source("L:/STAT/03_AS/01_Werkzeuge/01_Toolbox/R/Funktionen/theme_stat_tex.r")
+source("L:/STAT/03_AS/01_Werkzeuge/01_Toolbox/R/Funktionen/theme_stat.r")
+```
+
+
+.pull-left[
+```{r, eval = F, echo = T, fig.height=5, fig.width=7, fig.align='center'}
+
+ggplot(mtcars, 
+       aes(x = factor(cyl), 
+           fill = factor(cyl)))+
+geom_bar()
+
+
+
+```
+<br>
+```{r, eval = T, echo = F, fig.height=4.55, fig.width=5, fig.align='center'}
+
+ggplot(mtcars, 
+       aes(x = factor(cyl),
+           fill = factor(cyl)))+
+geom_bar()
+
+```
+
+]
+
+--
+
+.pull-right[
+```{r, eval = F, echo = T, tidy=T, tidy.opts=list(blank=FALSE, width.cutoff=30)}
+
+ggplot(mtcars, 
+       aes(x = factor(cyl),
+           fill = factor(cyl)))+
+geom_bar()+
+*theme_stat()
+
+```
+
+```{r, eval = T, echo = F, fig.height=4.5, fig.width=5, fig.align='center'}
+
+ggplot(mtcars, aes(x = factor(cyl), 
+                   fill = factor(cyl)))+
+geom_bar()+
+theme_stat()+
+scale_fill_manual(values = zhpal$zhbygseq, name = NULL)+
+labs(y = NULL, x = NULL)
+
+```
+]
+
+
+???
+we specify font, default colors many arguments within theme, such as  axes (lines, breaks, ticks), panel,grid, legend.position, background-color
+
+---
+
+class: inverse, center, bottom
+
+# statRmd
+
+## <br>RMarkdown pdf templates
+
+<br>
+.right[
+<IMG SRC="http://hexb.in/hexagons/rstudio.png" width = "150" height = auto><IMG SRC="http://hexb.in/hexagons/rmarkdown.png" width = "150" height = auto><IMG SRC="http://hexb.in/hexagons/knitr.png" width = "150" height = auto>]
+---
+
+class: left, top
+
+
+# Our Analytical Publications
+
+### PDF publications (mainly online)
+
+
+.pull-left[
+[<b> statistik.info</b>](https://statistik.zh.ch/internet/justiz_inneres/statistik/de/themen/statistikinfo.html)
+- custom made
+- stand-alone 
+- single-authored projects
+- text-intensive
+
+.center[<IMG SRC=libs/info.gif width = "180" height = auto>]
+
+
+]
+
+.pull-right[
+<font color=#009ee0><b>Periodic reports</b></font>
+- highly automated
+- parameterized
+- «reproducible»
+- mainly charts and tables
+
+.center[<IMG SRC=libs/report.gif width = "180" height = auto>]
+]
+
+
+
+---
+
+class: top, left
+
+# Workflow
+
+### Current state
+- Analysis in various .r files
+- Produce graphics with R and save as .png
+- Include .png in Word template
+- Publish Word as PDF
+
+--
+
+### Goal
+Establish an analysis and publication process, that is
+- traceable
+- «reproducible»
+- allows publication of high quality charts and maps
+- in accordance to our corporate design
+
+--
+
+.large[<font color=#009ee0>➡ RMarkdown</font>]
+
+???
+Markdown is a lightweight markup language with plain text formatting syntax. It is designed so that it can be converted to HTML and many other formats using a tool by the same name.set up a RMarkdown file in RStudio render it with some tex-compiler through kniter and get the pdf. How can you custommize your pdf output? -> YAML header
+---
+
+
+
+
+class: left, top
+
+#  RMarkdown pdf output
+
+
+.pull-left[
+### Default
+```{r, eval = F, echo = T, tidy=T, tidy.opts=list(blank=FALSE, width.cutoff=30)}
+---
+title: "Title"
+author: "Name"
+output:
+*  pdf_document
+---
+```
+
+.center[<IMG SRC=libs/RMarkdown_default.PNG width = "150" height = auto>]
+
+]
+--
+
+.pull-right[
+###statRmd::stat_report
+```{r, eval = F, echo = T, tidy=T, tidy.opts=list(blank=FALSE, width.cutoff=30)}
+---
+title: "Haupttitel"
+author: "Vorname Nachname"
+output:
+*  statRmd::stat_report
+---
+```
+.center[<IMG SRC=libs/titel_statistikinfo.PNG width = "150" height = auto>]
+]
+
+???
+let's get a bit deeper in the technical details. we see here a yaml header of a random RMarkdown file. In the yaml header you define your output type, pdf, html, word, whatever. according to the output section this file is going to produce a PDF document. furthermore, we have specified a latex_engine xelatex (necessary for arial fonts) and a cairo_pdf device for the graphics output. probably, we wish to make further adjustments to the output. we have (at least) 2 ways of making further customizations. Probably you may want do make adjustments to the default .tex layout. like font, colors, title page etc. 2 ways of doing this: 
+- in the header-includes: you can do the tex-adjustments, loading packages, define colors etc.
+- you create you own my_template.tex and overwrite rmarkdowns default .tex file 
+
+
+---
+
+class: left, top
+
+
+# Build <font color=#009ee0>statRmd</font>  package
+
+###  Why build a package?
+
+
+- Code organization
+
+- Consistent documentation
+
+- Code distribution
+
+<!-- - it has become pretty easy to do, thanks to    -->
+
+<!-- .center[ -->
+<!-- <IMG SRC="http://hexb.in/hexagons/devtools.png" width = "100" height = auto><IMG SRC="http://hexb.in/hexagons/roxygen2.png" width = "100" height = auto>] -->
+
+- Templates
+
+--
+
+### Content
+
+
+- RMarkdown Templates
+
+- Some helper functions
+
+
+???
+as for every R project, there are many good reasons why to build a package. 
+-it helps you keep your code organized. compared to having different code snippets and functions in project-specific folders
+-it helps you document your codes in a way that your co-workers and your future-you will still understand you reasoning
+-sharing a package comes more handy than sharing different functions and code snippets based on different package versions
+- you can create doucment templates. for this specific case this is an excellent reason to build  package
+along with the templates we provide some helpfer functions, to nicely align the graphics output in the document or to nicely wrap plot titles 
+---
+
+class: left, top
+
+
+# Load Template from <font color=#009ee0>statRmd</font>
+
+
+File > New File > R Markdown > From Template
+
+![](libs/RMarkdown_Templates.PNG)
+
+
+
+
+
+
+---
+background-image: url("libs/sticker-01.png")
+background-position: bottom right
+background-size:30%
+
+# Keep in touch
+
+<br>
+
+Slides  
+https://statistikzh.github.io/RMeetup/
+
+Website  
+https://statistik.zh.ch
+
+Twitter  
+<a href="https://twitter.com/statistik_zh?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@statistik_zh</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+<!-- .right[<IMG SRC="libs/sticker-01.png" width = auto height = "150">] -->
