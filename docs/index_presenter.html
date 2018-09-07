@@ -3,7 +3,7 @@
   <head>
     <title>  UROS 2018</title>
     <meta charset="utf-8">
-    <meta name="author" content="Thomas Lo Russo" />
+    <meta name="author" content="Thomas Lo Russo, Statistical Office of the Canton of Zurich" />
     <link rel="stylesheet" href="libs\testzh.css" type="text/css" />
   </head>
   <body>
@@ -12,7 +12,7 @@ class: center, middle, inverse, title-slide
 
 # <br> UROS 2018
 ## Mastering Corporate Design with R
-### Thomas Lo Russo
+### Thomas Lo Russo, Statistical Office of the Canton of Zurich
 
 ---
 
@@ -65,6 +65,7 @@ class: middle, left
 class: inverse, center, middle
 
 # ZH Colour Palette
+
 ---
 class: center, middle
 
@@ -74,6 +75,14 @@ Not the ideal &lt;font color=#009ee0&gt;color-palette&lt;/font&gt; for graphs.
 
 ???
 The official cantonal CD-colors were made for other purpouses than data-visualization - mainly for the use in print publications produced with office products. Which explains why the palette is like it is.
+---
+background-image: url(libs/gross.gif)
+background-position: 50% 40%
+background-size: 70%
+class: center, bottom
+
+
+.footnote[[Via Giphy](https://media.giphy.com/media/tjwzClJM6fyEw/giphy.gif)]
 
 ---
 ### How we created our own color-scheme
@@ -132,16 +141,6 @@ p +theme_stat() +
 ???
 If you should ever create your own palette you will have it tested for colorblindness.
 The dichromat package is a great resource. You can see an example here.
-
----
-
-
-
-https://gph.is/1rkeBqu
-
-
-
-
 
 ---
 class: inverse, center, bottom
@@ -204,7 +203,7 @@ class: inverse, center, middle
 
 ???
 
-I would never have imagined to give a presentation related to EXCEL at an R-meetup. But here i am. I will try to make it short. We're in this toghether and will survive it for sure. Just think about the Apero.
+I would never have imagined to give a presentation related to EXCEL at an R-conference. But here i am. I will try to make it short. We're in this toghether and will survive it for sure. Just think about the Apero.
 
 ---
 background-image: url(libs/turtles.gif)
@@ -245,7 +244,7 @@ Creating formated excel-tables straight-out-of-R saves time and reduces the risk
 statR::quickXLSX(data,"name of the table")
 
 ***multiple worksheets***
-statR::statXLSX(data,"name of the table", worksheets)
+statR::splitXLSX(data,"name of the table", sheetvar)
 
 ***Advantages***
 
@@ -258,7 +257,7 @@ statR::statXLSX(data,"name of the table", worksheets)
 ???
 The amount of time i spend with formatting excel-tables at work is directly correlated with job-dissatisfaction. i love my job. And to assure that this stays as it is i wrote these functions. There are several packages that allow to create xlsx files. I choose to build the functions on top of the openxlsx package. openxlsx does not dependend on Java, which has caused me trouble when using other excel-packages. 
 
-We are planing to automatize the Excel-production and the functions will come into play in this process. 
+We are automatizing the Excel-production and the functions are coming into play in this process. 
 
 ---
 background-image: url("libs/5.png")
@@ -457,6 +456,12 @@ background-size:30%
 
 Slides  
 https://statistikzh.github.io/RMeetup/
+
+Vignette of the statR-package
+https://statistikzh.github.io/statR/
+
+statRmd-package (github)
+https://github.com/statistikZH/statRmd
 
 Website  
 https://statistik.zh.ch
