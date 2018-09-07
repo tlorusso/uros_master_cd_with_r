@@ -52,9 +52,9 @@ class: middle, left
 
 - Colors for R-graphics <font color=#009ee0>zhpal</font>
 
-- Write data in formated Excel-Tables <font color=#009ee0>statXLSX</font>
-
 - Theme for ggplot2 graphics <font color=#009ee0>theme_stat</font>
+
+- Write data in formated Excel-Tables <font color=#009ee0>statXLSX</font>
 
 - Reports & pdf documents <font color=#009ee0>statRmd</font>
 
@@ -137,87 +137,15 @@ p +theme_stat() +
 ???
 If you should ever create your own palette you will have it tested for colorblindness.
 The dichromat package is a great resource. You can see an example here.
----
-background-image: url(libs/darthvader.jpg)
-background-position: 50% 50%
-class: center, bottom, inverse
-
-???
-So let me draw a short conclusion. There is no strict obligation to use these colours-palettes for everything. However, i believe in the persuasion of the force of convenience will get more and more people to use our color scheme and finally make all our charts look alike.
 
 ---
-class: inverse, center, middle
-
-# Producing already formated XLSX-tables with R
 
 
-???
 
-I would never have imagined to give a presentation related to EXCEL at an R-meetup. But here i am. I will try to make it short. We're in this toghether and will survive it for sure. Just think about the Apero.
+https://gph.is/1rkeBqu
 
----
-background-image: url(libs/turtles.gif)
-background-position: 50% 10%
-background-size: 80%
-class: center, bottom, inverse
 
-## Our users love Excel-tables
-100+ Excel-tables on our website<br>
-Data is delivered in Excel-tables to users on a daily-basis<br>
-No strict guidelines on how XLSX files should look like
 
-.footnote[[<font color=#FFFFFF>Gif: Hoguemr, reddit<font>](https://www.reddit.com/r/funny/comments/1gzksk/work_was_a_little_slow_for_me_this_morning_again/)]
-
-???
-
-The majority of our customers relies on Excel as a tool for data analysis. Thats why we have 100+ excel Tables on our website. We perform customer specific queries on a daily basis and deliver the data in Excel-tables. However there is a problem with this - for a long time, there haven't been any strict guidelines on how our XLSX Files should look like.
-
-Even if you can do crazy stuff in Excel - i mean look at thisgif that i found on reddit. In our opinion, Exceltables should be seen as a mere Endproduct. We prefer not doing anykind of datamanipulation or extensive formatting in Excel. TO ensure reproducibility.  Thats why i set up r-functions that allow for generating the final output without ever leaving R. 
-
-Be warned the next slide -> headache. How diverse our excels looked like (and to some degree still do)
-
----
-background-image: url(libs/excel.gif)
-background-size: contain
-class: center, bottom
-
-???
-
-you can see the prob there
----
-
-#statXLSX
-
-Creating formated excel-tables straight-out-of-R saves time and reduces the risk of errors. We recurred to the [***openxlsx-package***](https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf) package to define functions that write R-datasets in formated STAT ZH-Excel-tables.
-
-***single worksheet***
-statR::quickXLSX(data,"name of the table")
-
-***multiple worksheets***
-statR::statXLSX(data,"name of the table", worksheets)
-
-***Advantages***
-
-+End-to-end reproducibility
-
-+quality assurance, less error prone
-
-+visual coherence
-
-???
-The amount of time i spend with formatting excel-tables at work is directly correlated with job-dissatisfaction. i love my job. And to assure that this stays as it is i wrote these functions. There are several packages that allow to create xlsx files. I choose to build the functions on top of the openxlsx package. openxlsx does not dependend on Java, which has caused me trouble when using other excel-packages. 
-
-We are planing to automatize the Excel-production and the functions will come into play in this process. 
-
----
-background-image: url("libs/5.png")
-background-size: contain
-class: center, bottom
-
----
-background-image: url("libs/6.png")
-background-size: contain
-class: center, bottom
 
 
 ---
@@ -302,6 +230,81 @@ we specify font, default colors many arguments within theme, such as  axes (line
 
 ---
 
+class: inverse, center, middle
+
+# Producing already formated XLSX-tables with R
+
+
+???
+
+I would never have imagined to give a presentation related to EXCEL at an R-meetup. But here i am. I will try to make it short. We're in this toghether and will survive it for sure. Just think about the Apero.
+
+---
+background-image: url(libs/turtles.gif)
+background-position: 50% 10%
+background-size: 80%
+class: center, bottom, inverse
+
+## Our users love Excel-tables
+100+ Excel-tables on our website<br>
+Data is delivered in Excel-tables to users on a daily-basis<br>
+No strict guidelines on how XLSX files should look like
+
+.footnote[[<font color=#FFFFFF>Gif: Hoguemr, reddit<font>](https://www.reddit.com/r/funny/comments/1gzksk/work_was_a_little_slow_for_me_this_morning_again/)]
+
+???
+
+The majority of our customers relies on Excel as a tool for data analysis. Thats why we have 100+ excel Tables on our website. We perform customer specific queries on a daily basis and deliver the data in Excel-tables. However there is a problem with this - for a long time, there haven't been any strict guidelines on how our XLSX Files should look like.
+
+Even if you can do crazy stuff in Excel - i mean look at thisgif that i found on reddit. In our opinion, Exceltables should be seen as a mere Endproduct. We prefer not doing anykind of datamanipulation or extensive formatting in Excel. TO ensure reproducibility.  Thats why i set up r-functions that allow for generating the final output without ever leaving R. 
+
+Be warned the next slide -> headache. How diverse our excels looked like (and to some degree still do)
+
+---
+background-image: url(libs/excel.gif)
+background-size: contain
+class: center, bottom
+
+???
+
+you can see the prob there
+---
+
+#statXLSX
+
+Creating formated excel-tables straight-out-of-R saves time and reduces the risk of errors. We recurred to the [***openxlsx-package***](https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf) package to define functions that write R-datasets in formated STAT ZH-Excel-tables.
+
+***single worksheet***
+statR::quickXLSX(data,"name of the table")
+
+***multiple worksheets***
+statR::statXLSX(data,"name of the table", worksheets)
+
+***Advantages***
+
++End-to-end reproducibility
+
++quality assurance, less error prone
+
++visual coherence
+
+???
+The amount of time i spend with formatting excel-tables at work is directly correlated with job-dissatisfaction. i love my job. And to assure that this stays as it is i wrote these functions. There are several packages that allow to create xlsx files. I choose to build the functions on top of the openxlsx package. openxlsx does not dependend on Java, which has caused me trouble when using other excel-packages. 
+
+We are planing to automatize the Excel-production and the functions will come into play in this process. 
+
+---
+background-image: url("libs/5.png")
+background-size: contain
+class: center, bottom
+
+---
+background-image: url("libs/6.png")
+background-size: contain
+class: center, bottom
+
+
+---
 class: inverse, center, bottom
 
 # statRmd

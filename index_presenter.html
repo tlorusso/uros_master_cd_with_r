@@ -55,9 +55,9 @@ class: middle, left
 
 - Colors for R-graphics &lt;font color=#009ee0&gt;zhpal&lt;/font&gt;
 
-- Write data in formated Excel-Tables &lt;font color=#009ee0&gt;statXLSX&lt;/font&gt;
-
 - Theme for ggplot2 graphics &lt;font color=#009ee0&gt;theme_stat&lt;/font&gt;
+
+- Write data in formated Excel-Tables &lt;font color=#009ee0&gt;statXLSX&lt;/font&gt;
 
 - Reports &amp; pdf documents &lt;font color=#009ee0&gt;statRmd&lt;/font&gt;
 
@@ -132,15 +132,71 @@ p +theme_stat() +
 ???
 If you should ever create your own palette you will have it tested for colorblindness.
 The dichromat package is a great resource. You can see an example here.
+
 ---
-background-image: url(libs/darthvader.jpg)
-background-position: 50% 50%
-class: center, bottom, inverse
+
+
+
+https://gph.is/1rkeBqu
+
+
+
+
+
+---
+class: inverse, center, bottom
+
+# theme_stat()
+
+## &lt;br&gt;a theme for ggplot2 graphics
+
+&lt;br&gt;
+.right[
+&lt;IMG SRC="http://hexb.in/hexagons/ggplot2.png" width = "150" height = auto&gt;]
+
+
+---
+class:top, left
+
+# Graphics with &lt;font color=#009ee0&gt;theme_stat()&lt;/font&gt;
+
+
+
+
+.pull-left[
+
+```r
+ggplot(mtcars, 
+       aes(x = factor(cyl), 
+           fill = factor(cyl)))+
+geom_bar()
+```
+&lt;br&gt;
+&lt;img src="index_presenter_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+--
+
+.pull-right[
+
+```r
+ggplot(mtcars, 
+       aes(x = factor(cyl),
+           fill = factor(cyl)))+
+geom_bar()+
+*theme_stat()
+```
+
+&lt;img src="index_presenter_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+]
+
 
 ???
-So let me draw a short conclusion. There is no strict obligation to use these colours-palettes for everything. However, i believe in the persuasion of the force of convenience will get more and more people to use our color scheme and finally make all our charts look alike.
+we specify font, default colors many arguments within theme, such as  axes (lines, breaks, ticks), panel,grid, legend.position, background-color
 
 ---
+
 class: inverse, center, middle
 
 # Producing already formated XLSX-tables with R
@@ -216,59 +272,6 @@ class: center, bottom
 
 
 ---
-class: inverse, center, bottom
-
-# theme_stat()
-
-## &lt;br&gt;a theme for ggplot2 graphics
-
-&lt;br&gt;
-.right[
-&lt;IMG SRC="http://hexb.in/hexagons/ggplot2.png" width = "150" height = auto&gt;]
-
-
----
-class:top, left
-
-# Graphics with &lt;font color=#009ee0&gt;theme_stat()&lt;/font&gt;
-
-
-
-
-.pull-left[
-
-```r
-ggplot(mtcars, 
-       aes(x = factor(cyl), 
-           fill = factor(cyl)))+
-geom_bar()
-```
-&lt;br&gt;
-&lt;img src="index_presenter_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
-
-]
-
---
-
-.pull-right[
-
-```r
-ggplot(mtcars, 
-       aes(x = factor(cyl),
-           fill = factor(cyl)))+
-geom_bar()+
-*theme_stat()
-```
-
-&lt;img src="index_presenter_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
-]
-
-
-???
-we specify font, default colors many arguments within theme, such as  axes (lines, breaks, ticks), panel,grid, legend.position, background-color
-
----
-
 class: inverse, center, bottom
 
 # statRmd

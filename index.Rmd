@@ -1,0 +1,434 @@
+---
+title:  "<br> RMeetup"
+subtitle: "Mastering Corporate Design with R"
+author: "Thomas Lo Russo, Andrea Schnell<br>  7. November 2017"
+output:
+  xaringan::moon_reader:
+    css: libs/testzh.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      self_contained: false
+      
+---
+
+class: inverse, center, middle
+
+# The state of corporate design @ STAT ZH
+---
+class: middle, left
+
+#The state of CD @ <font color=#009ee0>STAT ZH</font>
+
+- Generic CD Guidelines for cantonal public administration cover the basics (e.g. fonts)
+- No centralized publishing, several self-publishers
+ - Infographics (Website & Twitter), Excel-Tables, statistik.info
+ 
+- professionaly layouted publications are the exception
+
+- How do we achieve <b>visual uniformity</b> of our products?
+
+--
+
+- <b>'Do it yourself' Corporate Design Toolbox</b>
+
+---
+class: middle, left
+
+# Corporate-Design Toolbox
+
+- Colors for R-graphics <font color=#009ee0>zhpal</font>
+
+- Write data in formated Excel-Tables <font color=#009ee0>statXLSX</font>
+
+- Theme for ggplot2 graphics <font color=#009ee0>theme_stat</font>
+
+- Reports & pdf documents <font color=#009ee0>statRmd</font>
+
+---
+class: inverse, center, middle
+
+# ZH Color Palette
+---
+class: center, middle
+
+Not the ideal <font color=#009ee0>color-palette</font> for graphs.
+```{r tidy=FALSE,echo=FALSE}
+library(scales)
+library(ggplot2)
+library(statR)
+
+ggplot(diamonds, aes(clarity, fill=clarity))+ 
+  geom_bar(position = "stack", width = 1)+
+  scale_fill_manual(values=zhpal$zhcd)
+
+```
+
+---
+### How we created our own color-scheme
+
+- **Color palette creation** with R
+ - Mute the cd colors (color interpolation)
+ - Adapt the color space (LAB instead of RGB)
+ - Creation of a color-matrix (varying hue AND saturation)
+ - Testing for Colorblind-friendliness
+ 
+<font color=#009ee0>Resources:</font>
+ 
+**Interpolation** → grDevices::colorRampPalette()
+
+**Colorblind-Testing** → Dichromat-package
+
+---
+class: center,middle
+
+```{r tidy=FALSE,echo=FALSE}
+library(statR)
+library(scales)
+
+show_col(c(zhpal$zhdarker,zhpal$zhdark,zhpal$zh,zhpal$zhlight,zhpal$zhpastel,zhpal$zhextralight,zhpal$zhultralight), borders=FALSE)
+```
+
+
+---
+class: center,middle
+
+
+.pull-left[
+```{r tidy=FALSE,echo=TRUE}
+p = ggplot(diamonds, aes(clarity, fill=cut)) + 
+  geom_bar(position = "stack", width= 0.5)
+
+p +theme_stat() +
+  scale_fill_manual(values=zhpal$zhdiagonal)
+```
+]
+
+.pull-right[
+```{r tidy=FALSE,echo=TRUE}
+library(dichromat)
+
+p +theme_stat() +
+  scale_fill_manual(values=dichromat(zhpal$zhdiagonal,type=c("tritan")))
+```
+]
+
+
+---
+background-image: url(libs/darthvader.jpg)
+background-position: 50% 50%
+class: center, bottom, inverse
+
+---
+class: inverse, center, middle
+
+# Producing already formated XLSX-tables with R
+
+---
+background-image: url(libs/turtles.gif)
+background-position: 50% 10%
+background-size: 80%
+class: center, bottom, inverse
+
+## Our users love Excel-tables
+100+ Excel-tables on our website<br>
+Data is delivered in Excel-tables to users on a daily-basis<br>
+No strict guidelines on how XLSX files should look like
+
+.footnote[[<font color=#FFFFFF>Gif: Hoguemr, reddit<font>](https://www.reddit.com/r/funny/comments/1gzksk/work_was_a_little_slow_for_me_this_morning_again/)]
+
+---
+background-image: url(libs/excel.gif)
+background-size: contain
+class: center, bottom
+
+---
+
+#statXLSX
+
+Creating formated excel-tables straight-out-of-R saves time and reduces the risk of errors. We recurred to the [***openxlsx-package***](https://cran.r-project.org/web/packages/openxlsx/openxlsx.pdf) package to define functions that write R-datasets in formated STAT ZH-Excel-tables.
+
+***single worksheet***
+statR::quickXLSX(data,"name of the table")
+
+***multiple worksheets***
+statR::statXLSX(data,"name of the table", worksheets)
+
+***Advantages***
+
++End-to-end reproducibility
+
++quality assurance, less error prone
+
++visual coherence
+
+---
+background-image: url("libs/5.PNG")
+background-size: contain
+class: center, bottom
+
+---
+background-image: url("libs/6.PNG")
+background-size: contain
+class: center, bottom
+
+
+---
+class: inverse, center, bottom
+
+# theme_stat()
+
+## <br>a theme for ggplot2 graphics
+
+<br>
+.right[
+<IMG SRC="http://hexb.in/hexagons/ggplot2.png" width = "150" height = auto>]
+
+
+---
+class:top, left
+
+# Graphics with <font color=#009ee0>theme_stat()</font>
+
+```{r, eval = T, echo = F, include = F}
+library(ggplot2)
+library(statRmd)
+library(dplyr)
+library(formatR)
+library(gridExtra)
+source("L:/STAT/03_AS/01_Werkzeuge/01_Toolbox/R/Funktionen/theme_stat_tex.r")
+source("L:/STAT/03_AS/01_Werkzeuge/01_Toolbox/R/Funktionen/theme_stat.r")
+```
+
+
+.pull-left[
+```{r, eval = F, echo = T, fig.height=5, fig.width=7, fig.align='center'}
+
+ggplot(mtcars, 
+       aes(x = factor(cyl), 
+           fill = factor(cyl)))+
+geom_bar()
+
+
+
+```
+<br>
+```{r, eval = T, echo = F, fig.height=4.55, fig.width=5, fig.align='center'}
+
+ggplot(mtcars, 
+       aes(x = factor(cyl),
+           fill = factor(cyl)))+
+geom_bar()
+
+```
+
+]
+
+--
+
+.pull-right[
+```{r, eval = F, echo = T, tidy=T, tidy.opts=list(blank=FALSE, width.cutoff=30)}
+
+ggplot(mtcars, 
+       aes(x = factor(cyl),
+           fill = factor(cyl)))+
+geom_bar()+
+*theme_stat()
+
+```
+
+```{r, eval = T, echo = F, fig.height=4.5, fig.width=5, fig.align='center'}
+
+ggplot(mtcars, aes(x = factor(cyl), 
+                   fill = factor(cyl)))+
+geom_bar()+
+theme_stat()+
+scale_fill_manual(values = zhpal$zhbygseq, name = NULL)+
+labs(y = NULL, x = NULL)
+
+```
+]
+
+
+---
+
+class: inverse, center, bottom
+
+# statRmd
+
+## <br>RMarkdown pdf templates
+
+<br>
+.right[
+<IMG SRC="http://hexb.in/hexagons/rstudio.png" width = "150" height = auto><IMG SRC="http://hexb.in/hexagons/rmarkdown.png" width = "150" height = auto><IMG SRC="http://hexb.in/hexagons/knitr.png" width = "150" height = auto>]
+
+---
+
+class: left, top
+
+
+# Our Analytical Publications
+
+### PDF publications (mainly online)
+
+
+.pull-left[
+[<b> statistik.info</b>](https://statistik.zh.ch/internet/justiz_inneres/statistik/de/themen/statistikinfo.html)
+- custom made
+- stand-alone 
+- single-authored projects
+- text-intensive
+
+.center[<IMG SRC=libs/info.gif width = "150" height = auto>]
+
+
+]
+
+.pull-right[
+<font color=#009ee0><b>Periodic reports</b></font>
+- highly automated
+- parameterized
+- «reproducible»
+- mainly charts and tables
+
+.center[<IMG SRC=libs/report.gif width = "150" height = auto>]
+]
+
+
+---
+
+class: top, left
+
+# Workflow
+
+### Current state
+- Analysis in various .r files
+- Produce graphics with R and save as .png
+- Include .png in Word template
+- Publish Word as PDF
+
+--
+
+### Goal
+Establish an analysis and publication process, that is
+- traceable
+- «reproducible»
+- allows publication of high quality charts and maps
+- in accordance to our corporate design
+
+--
+
+.large[<font color=#009ee0>➡ RMarkdown</font>]
+
+
+
+---
+
+class: left, top
+
+#  RMarkdown pdf output
+
+
+.pull-left[
+### Default
+```{r, eval = F, echo = T, tidy=T, tidy.opts=list(blank=FALSE, width.cutoff=30)}
+---
+title: "Title"
+author: "Name"
+output:
+*  pdf_document
+---
+```
+
+.center[<IMG SRC=libs/RMarkdown_default.PNG width = "150" height = auto>]
+
+]
+--
+
+.pull-right[
+###statRmd::stat_report
+```{r, eval = F, echo = T, tidy=T, tidy.opts=list(blank=FALSE, width.cutoff=30)}
+---
+title: "Haupttitel"
+author: "Vorname Nachname"
+output:
+*  statRmd::stat_report
+---
+```
+.center[<IMG SRC=libs/titel_statistikinfo.PNG width = "150" height = auto>]
+]
+
+
+
+---
+
+class: left, top
+
+
+# Build <font color=#009ee0>statRmd</font>  package
+
+###  Why build a package?
+
+
+- Code organization
+
+- Consistent documentation
+
+- Code distribution
+
+<!-- - it has become pretty easy to do, thanks to    -->
+
+<!-- .center[ -->
+<!-- <IMG SRC="http://hexb.in/hexagons/devtools.png" width = "100" height = auto><IMG SRC="http://hexb.in/hexagons/roxygen2.png" width = "100" height = auto>] -->
+
+- Templates
+
+--
+
+### Content
+
+
+- RMarkdown Templates
+
+- Some helper functions
+
+---
+
+class: left, top
+
+
+# Load Template from <font color=#009ee0>statRmd</font>
+
+
+File > New File > R Markdown > From Template
+
+![](libs/RMarkdown_Templates.PNG)
+
+
+
+
+
+
+---
+background-image: url("libs/sticker-01.png")
+background-position: bottom right
+background-size:30%
+
+# Keep in touch
+
+<br>
+
+Slides  
+https://statistikzh.github.io/RMeetup/
+
+Website  
+https://statistik.zh.ch
+
+Twitter  
+<a href="https://twitter.com/statistik_zh?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@statistik_zh</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+<!-- .right[<IMG SRC="libs/sticker-01.png" width = auto height = "150">] -->
