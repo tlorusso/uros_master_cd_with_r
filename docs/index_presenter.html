@@ -97,11 +97,11 @@ class: center, bottom
  - Creation of a color-matrix (varying hue AND saturation)
  - Testing for Colorblind-friendliness
  
-&lt;font color=#009ee0&gt;Resources:&lt;/font&gt;
+## Resources
  
 **Interpolation** → grDevices::colorRampPalette()
 
-**Colorblind-Testing** → Dichromat-package
+**Colorblind-Testing** → [Dichromat-package](https://cran.r-project.org/web/packages/dichromat/index.html)
 
 ???
 
@@ -156,6 +156,9 @@ class: inverse, center, bottom
 &lt;br&gt;
 .right[
 &lt;IMG SRC="http://hexb.in/hexagons/ggplot2.png" width = "150" height = auto&gt;]
+
+???
+the second element in our toolbox is a ggplot2-theme. As with the colours - before everyone was playing around with theme options and you would reckognize who did a chart by how it looked.
 
 
 ---
@@ -324,7 +327,7 @@ class: top, left
 
 # Workflow
 
-### Current state
+### Before
 - Analysis in various .r files
 - Produce graphics with R and save as .png
 - Include .png in Word template
@@ -332,12 +335,12 @@ class: top, left
 
 --
 
-### Goal
-Establish an analysis and publication process, that is
+### Today
+We've established an analysis and publication process, that is (more):
 - traceable
 - «reproducible»
 - allows publication of high quality charts and maps
-- in accordance to our corporate design
+- in accordance with our corporate design
 
 --
 
@@ -391,15 +394,59 @@ let's get a bit deeper in the technical details. we see here a yaml header of a 
 - in the header-includes: you can do the tex-adjustments, loading packages, define colors etc.
 - you create you own my_template.tex and overwrite rmarkdowns default .tex file 
 
+statRmd is, as you have seen, a package containing templates and helper functions  (for example to nicely align the graphics output in the document or to nicely wrap plot titles ). I'll just show how it works.
 
 ---
-
 class: left, top
 
 
-# Build &lt;font color=#009ee0&gt;statRmd&lt;/font&gt;  package
+# Load Template from &lt;font color=#009ee0&gt;statRmd&lt;/font&gt;
 
-###  Why build a package?
+
+File &gt; New File &gt; R Markdown &gt; From Template
+
+![](libs/RMarkdown_Templates.PNG)
+---
+class: left, top
+
+###  Examples
+
+**statistik.info**
+
+- [Schnell, Andrea 2018, statistik.info 2018/02, Wertschöpfung und
+Produktivität](https://statistik.zh.ch/dam/justiz_innern/statistik/Publikationen/statistik_info/si_2018_02_wertschoepfung.pdf.spooler.download.1525771630192.pdf/si_2018_02_wertschoepfung.pdf)
+
+**Periodic Reports**
+
+[Quartalsbericht Handänderungsstatistik, Q1 2018](https://statistik.zh.ch/dam/justiz_innern/statistik/Themen/Immobilien_und_Raum/immomarkt_qbericht/Quartalsreport_2018_01.pdf.spooler.download.1532351614892.pdf/Quartalsreport_2018_01.pdf)
+
+
+---
+
+### Content
+
+
+- RMarkdown Templates
+
+- Some helper functions
+
+---
+class: left, top
+
+# What have we achieved with our CD-Toolbox?
+
+- drastic reduction of time spend with hands-on formatting
+- set standards through convienience, not by 'force'
+- reproducible outputs until the last step!
+- gained experience that will help us setting up something similar for further channels and products (e.g. html-pages / shiny-apps)
+
+
+???
+
+-it helps you document your codes in a way that your co-workers and your future-you will still understand you reasoning
+-sharing a package comes more handy than sharing different functions and code snippets based on different package versions
+- you can create doucment templates. for this specific case this is an excellent reason to build  package
+along with the templates we provide some helpfer functions, to nicely align the graphics output in the document or to nicely wrap plot titles 
 
 
 - Code organization
@@ -413,38 +460,7 @@ class: left, top
 &lt;!-- .center[ --&gt;
 &lt;!-- &lt;IMG SRC="http://hexb.in/hexagons/devtools.png" width = "100" height = auto&gt;&lt;IMG SRC="http://hexb.in/hexagons/roxygen2.png" width = "100" height = auto&gt;] --&gt;
 
-- Templates
-
---
-
-### Content
-
-
-- RMarkdown Templates
-
-- Some helper functions
-
-
-???
-as for every R project, there are many good reasons why to build a package. 
--it helps you keep your code organized. compared to having different code snippets and functions in project-specific folders
--it helps you document your codes in a way that your co-workers and your future-you will still understand you reasoning
--sharing a package comes more handy than sharing different functions and code snippets based on different package versions
-- you can create doucment templates. for this specific case this is an excellent reason to build  package
-along with the templates we provide some helpfer functions, to nicely align the graphics output in the document or to nicely wrap plot titles 
----
-
-class: left, top
-
-
-# Load Template from &lt;font color=#009ee0&gt;statRmd&lt;/font&gt;
-
-
-File &gt; New File &gt; R Markdown &gt; From Template
-
-![](libs/RMarkdown_Templates.PNG)
-
-
+- Template
 
 ---
 background-image: url("libs/sticker-01.png")
