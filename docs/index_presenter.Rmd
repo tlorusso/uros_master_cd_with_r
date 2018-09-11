@@ -381,11 +381,8 @@ We've established an analysis and publication process, that is (more):
 
 ???
 Markdown is a lightweight markup language with plain text formatting syntax. It is designed so that it can be converted to HTML and many other formats using a tool by the same name.set up a RMarkdown file in RStudio render it with some tex-compiler through kniter and get the pdf. How can you custommize your pdf output? -> YAML header
+
 ---
-
-
-
-
 class: left, top
 
 #  RMarkdown pdf output
@@ -449,49 +446,30 @@ Produktivität](https://statistik.zh.ch/dam/justiz_innern/statistik/Publikatione
 
 **Periodic Reports**
 
-[Quartalsbericht Handänderungsstatistik, Q1 2018](https://statistik.zh.ch/dam/justiz_innern/statistik/Themen/Immobilien_und_Raum/immomarkt_qbericht/Quartalsreport_2018_01.pdf.spooler.download.1532351614892.pdf/Quartalsreport_2018_01.pdf)
+- [Quartalsbericht Handänderungsstatistik, Q1 2018](https://statistik.zh.ch/dam/justiz_innern/statistik/Themen/Immobilien_und_Raum/immomarkt_qbericht/Quartalsreport_2018_01.pdf.spooler.download.1532351614892.pdf/Quartalsreport_2018_01.pdf)
 
-
----
-
-### Content
-
-
-- RMarkdown Templates
-
-- Some helper functions
 
 ---
 class: left, top
 
-# What have we achieved with our CD-Toolbox?
+##  Conclusion
 
-- drastic reduction of time spend with hands-on formatting
-- set standards through convienience, not by 'force'
-- reproducible outputs until the last step!
-- gained experience that will help us setting up something similar for further channels and products (e.g. html-pages / shiny-apps)
+__What we have achieved with our CD-Toolbox__
+ 
+- drastic reduction of time spent for repetitive tasks
+
+- setting of CD-standards through convenience (not by 'force'!)
+
+- end-to-end reproducibilty of the resulting outputs
+
+- gained experience that will help us setting up similar tools & templates for further products / publication channels (e.g. html-pages / shiny-apps)
 
 
 ???
 
--it helps you document your codes in a way that your co-workers and your future-you will still understand you reasoning
--sharing a package comes more handy than sharing different functions and code snippets based on different package versions
-- you can create doucment templates. for this specific case this is an excellent reason to build  package
-along with the templates we provide some helpfer functions, to nicely align the graphics output in the document or to nicely wrap plot titles 
+So to draw a conclusion : what have we achieved with our CD-Toolbox? 
 
-
-- Code organization
-
-- Consistent documentation
-
-- Code distribution
-
-<!-- - it has become pretty easy to do, thanks to    -->
-
-<!-- .center[ -->
-<!-- <IMG SRC="http://hexb.in/hexagons/devtools.png" width = "100" height = auto><IMG SRC="http://hexb.in/hexagons/roxygen2.png" width = "100" height = auto>] -->
-
-- Template
+We've drastically reduced the time we used to invest in formatting single charts, excel-tables and pdf publications. Also we've factually achieved a much higher degree of visual coherence across our publications - without putting on pressure on people or forcing someone. Just by providing convenient tools! In the areas where the toolbox is at work, we've achieved end - to end reproducibility as well as repeatability. Just execute the code and get the same report again / same excel table with new numbers etc. And last but not least: we've gained experience in creating tools & templates, useful when we will create some for new products / publication channels. 
 
 ---
 background-image: url("libs/sticker-01.png")
@@ -503,7 +481,7 @@ background-size:30%
 <br>
 
 Slides  
-https://statistikzh.github.io/RMeetup/
+https://bit.ly/2x35ktJ
 
 statR-package (colors, theme and xlsx-templates)
 https://statistikzh.github.io/statR/
