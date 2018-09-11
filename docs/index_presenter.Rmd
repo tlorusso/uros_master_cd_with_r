@@ -20,7 +20,7 @@ class: inverse, center, middle
 
 ???
 
-This presentation is about 'mastering CD'. However by mastering CD we do not mean perfectly layout and format everything and investing a lot of resources to do so. It is about achieving visual consistence of different forms of publications by letting R do the job for you. We will present the functions & templates we have programmed in R that users will not use for the sake of complying with CD at any cost but for CONVENIENCE.
+This presentation is about 'mastering CD'. However by mastering CD i do not mean perfectly layout and format everything and investing a lot of resources to do so. It is about achieving visual consistence of different forms of publications by letting R do the job for you. We will present the functions & templates we have programmed in R that users will not use for the sake of complying with CD at any cost but for CONVENIENCE.
 
 ---
 class: middle, left
@@ -50,11 +50,15 @@ class: middle, left
 
 # Corporate-Design Toolbox
 
+__[statR](https://statistikzh.github.io/statR/)__
+
 - Colors for R-graphics <font color=#009ee0>zhpal</font>
 
 - Theme for ggplot2 graphics <font color=#009ee0>theme_stat</font>
 
 - Write data in formated Excel-Tables <font color=#009ee0>statXLSX</font>
+
+__[statRmd](https://github.com/statistikZH/statRmd)__
 
 - Reports & pdf documents <font color=#009ee0>statRmd</font>
 
@@ -225,7 +229,7 @@ labs(y = NULL, x = NULL)
 
 
 ???
-we specify font, default colors many arguments within theme, such as  axes (lines, breaks, ticks), panel,grid, legend.position, background-color
+we specify font, default colors and many arguments within theme, such as  axes (lines, breaks, ticks), panel,grid, legend.position, background-color
 
 ---
 
@@ -236,7 +240,7 @@ class: inverse, center, middle
 
 ???
 
-I would never have imagined to give a presentation related to EXCEL at an R-conference. But here i am. I will try to make it short. We're in this toghether and will survive it for sure. Just think about the Apero.
+I would never have imagined to give a presentation related to EXCEL at an R-conference. But here i am. I will try to make it short. We're in this toghether and will survive it for sure. Just think about the lunch break soon.
 
 ---
 background-image: url(libs/turtles.gif)
@@ -255,7 +259,7 @@ No strict guidelines on how XLSX files should look like
 
 The majority of our customers relies on Excel as a tool for data analysis. Thats why we have 100+ excel Tables on our website. We perform customer specific queries on a daily basis and deliver the data in Excel-tables. However there is a problem with this - for a long time, there haven't been any strict guidelines on how our XLSX Files should look like.
 
-Even if you can do crazy stuff in Excel - i mean look at thisgif that i found on reddit. In our opinion, Exceltables should be seen as a mere Endproduct. We prefer not doing anykind of datamanipulation or extensive formatting in Excel. TO ensure reproducibility.  Thats why i set up r-functions that allow for generating the final output without ever leaving R. 
+Even if you can do crazy stuff in Excel - i mean look at this gif that i found on reddit. In our opinion, Exceltables should be seen as a mere Endproduct. We prefer not doing anykind of datamanipulation or extensive formatting in Excel. TO ensure reproducibility and repeatability.  Thats why we've set up r-functions that allow for generating the final output without ever leaving R. 
 
 Be warned the next slide -> headache. How diverse our excels looked like (and to some degree still do)
 
@@ -485,10 +489,10 @@ background-size:30%
 Slides  
 https://statistikzh.github.io/RMeetup/
 
-Vignette of the statR-package
+statR-package (colors, theme and xlsx-templates)
 https://statistikzh.github.io/statR/
 
-statRmd-package (github)
+statRmd-package (templates for pdf-reports)
 https://github.com/statistikZH/statRmd
 
 Website  
