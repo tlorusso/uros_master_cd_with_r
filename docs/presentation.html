@@ -42,12 +42,6 @@ class: middle, left
 
 - &lt;b&gt;'Do it yourself' Corporate Design Toolbox&lt;/b&gt;
 
-
-???
-
-The generic CD Guidelines provide a plenty of freedoms when it comes to design  - especially to units that publish data-products. We at the statistical Office have no centralized publishing. We are a group of self-publishers that produce infographics, Excel-tables and pdf-publications. So given this situation, how do we achieve a high degree of visual unifomirty? We are building a Corporate Desing Toolbox for this purpouse.
-
-
 ---
 class: middle, left
 
@@ -74,11 +68,8 @@ class: inverse, center, middle
 class: center, middle
 
 Not the ideal &lt;font color=#009ee0&gt;color-palette&lt;/font&gt; for graphs.
-![](index_presenter_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+![](presentation_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
 
-
-???
-The official cantonal CD-colors were made for other purpouses than data-visualization - mainly for the use in print publications produced with office products. Which explains why the palette is like it is.
 ---
 background-image: url(libs/gross.gif)
 background-position: 50% 40%
@@ -103,14 +94,10 @@ class: center, bottom
 
 **Colorblind-Testing** → [Dichromat-package](https://cran.r-project.org/web/packages/dichromat/index.html)
 
-???
-
-Everyone was using his own palettes (mainly color brewer) - no consistence! So we decided to develop our own color scheme. Here you can see the steps of the color-sheme developemnt. We took the cd-colors, reorderer and muted them. Of course, we've adapted the colorspace to LAB instead of RGB. LAB is a color space that is optimized for the human eye better percevieng the different hues. Then i wrote a function on top of the colorRampPalette-Function that you can feed with a palette and it produces differently saturated (lighter and darker) versions of it, in equal steps. The result is a color matrix which you can see on the next slide. 
-
 ---
 class: center,middle
 
-![](index_presenter_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+![](presentation_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -127,7 +114,7 @@ p +theme_stat() +
   scale_fill_manual(values=zhpal$zhdiagonal)
 ```
 
-![](index_presenter_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+![](presentation_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ]
 
 .pull-right[
@@ -139,12 +126,8 @@ p +theme_stat() +
   scale_fill_manual(values=dichromat(zhpal$zhdiagonal,type=c("tritan")))
 ```
 
-![](index_presenter_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+![](presentation_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 ]
-
-???
-If you should ever create your own palette you will have it tested for colorblindness.
-The dichromat package is a great resource. You can see an example here.
 
 ---
 class: inverse, center, bottom
@@ -156,10 +139,6 @@ class: inverse, center, bottom
 &lt;br&gt;
 .right[
 &lt;IMG SRC="http://hexb.in/hexagons/ggplot2.png" width = "150" height = auto&gt;]
-
-???
-the second element in our toolbox is a ggplot2-theme. As with the colours - before everyone was playing around with theme options and you would reckognize who did a chart by how it looked.
-
 
 ---
 class:top, left
@@ -178,7 +157,7 @@ ggplot(mtcars,
 geom_bar()
 ```
 &lt;br&gt;
-&lt;img src="index_presenter_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -194,12 +173,8 @@ geom_bar()+
 *theme_stat()
 ```
 
-&lt;img src="index_presenter_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
 ]
-
-
-???
-we specify font, default colors and many arguments within theme, such as  axes (lines, breaks, ticks), panel,grid, legend.position, background-color
 
 ---
 
@@ -225,12 +200,6 @@ Data is delivered in Excel-tables to users on a daily-basis&lt;br&gt;
 No strict guidelines on how XLSX files should look like
 
 .footnote[[&lt;font color=#FFFFFF&gt;Gif: Hoguemr, reddit&lt;font&gt;](https://www.reddit.com/r/funny/comments/1gzksk/work_was_a_little_slow_for_me_this_morning_again/)]
-
-???
-
-The majority of our customers relies on Excel as a tool for data analysis. Thats why we have 100+ excel Tables on our website. We perform customer specific queries on a daily basis and deliver the data in Excel-tables. However there is a problem with this - for a long time, there haven't been any strict guidelines on how our XLSX Files should look like.
-
-Be warned the next slide -&gt; headache. How diverse our excels looked like (and to some degree still do)
 
 ---
 background-image: url(libs/excel.gif)
@@ -259,11 +228,6 @@ statR::splitXLSX(data,"name of the table", sheetvar)
 +quality assurance, less error prone
 
 +visual coherence
-
-???
-The amount of time i spend with formatting excel-tables at work is directly correlated with job-dissatisfaction. i love my job. And to assure that this stays as it is i wrote these functions. There are several packages that allow to create xlsx files. I choose to build the functions on top of the openxlsx package. openxlsx does not dependend on Java, which has caused me trouble when using other excel-packages. 
-
-We are automatizing the Excel-production and the functions are coming into play in this process. 
 
 ---
 background-image: url("libs/5.PNG")
@@ -345,9 +309,6 @@ We've established an analysis and publication process, that is (more):
 
 .large[&lt;font color=#009ee0&gt;➡ RMarkdown&lt;/font&gt;]
 
-???
-Markdown is a lightweight markup language with plain text formatting syntax. It is designed so that it can be converted to HTML and many other formats using a tool by the same name.set up a RMarkdown file in RStudio render it with some tex-compiler through kniter and get the pdf. How can you custommize your pdf output? -&gt; YAML header
-
 ---
 class: left, top
 
@@ -384,13 +345,6 @@ output:
 ```
 .center[&lt;IMG SRC=libs/titel_statistikinfo.PNG width = "150" height = auto&gt;]
 ]
-
-???
-let's get a bit deeper in the technical details. we see here a yaml header of a random RMarkdown file. In the yaml header you define your output type, pdf, html, word, whatever. according to the output section this file is going to produce a PDF document. furthermore, we have specified a latex_engine xelatex (necessary for arial fonts) and a cairo_pdf device for the graphics output. probably, we wish to make further adjustments to the output. we have (at least) 2 ways of making further customizations. Probably you may want do make adjustments to the default .tex layout. like font, colors, title page etc. 2 ways of doing this: 
-- in the header-includes: you can do the tex-adjustments, loading packages, define colors etc.
-- you create you own my_template.tex and overwrite rmarkdowns default .tex file 
-
-statRmd is, as you have seen, a package containing templates and helper functions  (for example to nicely align the graphics output in the document or to nicely wrap plot titles ). I'll just show how it works.
 
 ---
 class: left, top
@@ -432,13 +386,6 @@ __What we have achieved with our CD-Toolbox__
 
 - gained experience that will help us setting up similar tools &amp; templates for further products / publication channels (e.g. html-pages / shiny-apps)
 
-
-???
-
-So to draw a conclusion : what have we achieved with our CD-Toolbox? 
-
-We've drastically reduced the time we used to invest in formatting single charts, excel-tables and pdf publications. Also we've factually achieved a much higher degree of visual coherence across our publications - without putting on pressure on people or forcing someone. Just by providing convenient tools! In the areas where the toolbox is at work, we've achieved end - to end reproducibility as well as repeatability. Just execute the code and get the same report again / same excel table with new numbers etc. And last but not least: we've gained experience in creating tools &amp; templates, useful when we will create some for new products / publication channels. 
-
 ---
 background-image: url("libs/sticker-01.png")
 background-position: bottom right
@@ -463,10 +410,6 @@ https://statistik.zh.ch
 Twitter  
 &lt;a href="https://twitter.com/statistik_zh?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"&gt;@statistik_zh&lt;/a&gt;&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 &lt;a href="https://twitter.com/@thlorusso?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"&gt;@thlorusso&lt;/a&gt;&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-
-
-
-&lt;!-- .right[&lt;IMG SRC="libs/sticker-01.png" width = auto height = "150"&gt;] --&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
