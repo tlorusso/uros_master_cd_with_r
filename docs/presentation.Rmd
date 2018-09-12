@@ -427,7 +427,7 @@ background-size:30%
 <br>
 
 Slides  
-https://bit.ly/2x35ktJ
+https://bit.ly/2OezDo5
 
 statR-package (colors, theme and xlsx-templates)
 https://statistikzh.github.io/statR/
