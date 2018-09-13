@@ -477,24 +477,20 @@ background-size:30%
 
 # Keep in touch
 
-<br>
+<br/>
 
-Slides  
-https://bit.ly/2x35ktJ
-
-statR-package (colors, theme and xlsx-templates)
-https://statistikzh.github.io/statR/
-
-statRmd-package (templates for pdf-reports)
-https://github.com/statistikZH/statRmd
+__Slides__: https://bit.ly/2OezDo5
 
 Website  
 https://statistik.zh.ch
 
+Email  
+[thomas.lorusso@statistik.ji.zh.ch](mailto:thomas.lorusso@statistik.ji.zh.ch)
+
 Twitter  
 <a href="https://twitter.com/statistik_zh?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@statistik_zh</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <a href="https://twitter.com/@thlorusso?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@thlorusso</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
+<a href="https://twitter.com/@schnllr?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@schnllr</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 <!-- .right[<IMG SRC="libs/sticker-01.png" width = auto height = "150">] -->
