@@ -13,14 +13,9 @@ output:
       self_contained: false
       
 ---
-
 class: inverse, center, middle
 
 # The state of corporate design @ STAT ZH
-
-???
-
-This presentation is about 'mastering CD'. However by mastering CD i do not mean perfectly layout and format everything and investing a lot of resources to do so. It is about achieving visual consistence of different forms of publications by letting R do the job for you. We will present the functions & templates we have programmed in R that users will not use for the sake of complying with CD at any cost but for CONVENIENCE.
 
 ---
 class: middle, left
@@ -214,12 +209,6 @@ labs(y = NULL, x = NULL)
 class: inverse, center, middle
 
 # Producing already formated XLSX-tables with R
-
-
-???
-
-I would never have imagined to give a presentation related to EXCEL at an R-conference. But here i am. I will try to make it short. We're in this toghether and will survive it for sure. Just think about the lunch break soon. 
-However i have to admit that it appears to be possible to do crazy stuff in Excel - i mean look at this gif that i found on reddit. Someone has programemd this in excel!
 
 ---
 background-image: url(libs/turtles.gif)
@@ -424,10 +413,7 @@ background-size:30%
 
 # Keep in touch
 
-<br>
-
-Slides  
-https://bit.ly/2OezDo5
+__Slides__: https://bit.ly/2OezDo5
 
 statR-package (colors, theme and xlsx-templates)
 https://statistikzh.github.io/statR/
@@ -441,6 +427,6 @@ https://statistik.zh.ch
 Twitter  
 <a href="https://twitter.com/statistik_zh?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@statistik_zh</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <a href="https://twitter.com/@thlorusso?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@thlorusso</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
+<a href="https://twitter.com/@schnllr?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">@schnllr</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
